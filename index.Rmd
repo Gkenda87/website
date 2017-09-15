@@ -127,3 +127,47 @@ WHERE playerID='ruthba01'"
 sqldf(query)
 ```
 
+Suppose we wanted to find all instances where Yankees have hit 40 homeruns or more. 
+
+```{r}
+query<-"SELECT playerID,yearID,HR FROM Batting
+WHERE teamID= 'NYA' and HR>=40"
+
+sqldf(query)
+```
+
+Suppose we want to find all players who have more than 40 homeruns, but less than 60 strikeouts. 
+
+```{r}
+query<-"SELECT playerID,teamID,HR,SO FROM Batting
+WHERE HR>40 and SO<60"
+
+sqldf(query)
+```
+
+## Ordering Rows 
+One can order rows with the use of Order by. One can use DESC if they want the descend the order.  The DESC will be placed after the ORDER BY command. The ascending order is at default, if one wants their order from smallest to largest.  
+
+Now let's add something new... Suppose we find every instance of a player hitting more than 50 homeruns, but let's have the players with the most homeruns at the top. 
+
+```{r}
+query<-"SELECT playerID,yearID,teamID,HR FROM Batting
+WHERE HR>50
+ORDER BY HR DESC"
+
+sqldf(query)
+```
+
+Suppose we want to find all instances of a player striking out less than 10 times at least 400 at-bats. Players with the least strike outs are at the top. 
+
+```{r}
+query<-"SELECT playerID,yearID,teamID,SO,AB FROM Batting
+WHERE SO<10 and AB>=400
+ORDER BY SO"
+
+sqldf(query)
+```
+
+
+
+
